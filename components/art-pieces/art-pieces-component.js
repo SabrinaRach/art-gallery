@@ -1,4 +1,4 @@
-import ArtPiecePreview from "../art-piece-preview"; /* importing ArtPiecePreview component from the art-piece-preview directory. This component is used to display a preview of an individual art piece. */
+import ArtPiecePreview from "../art-piece-preview/art-piece-preview"; /* importing ArtPiecePreview component from the art-piece-preview directory. This component is used to display a preview of an individual art piece. */
 import { Gallery } from "./styles";
 
 /* Renders the gallery page.
