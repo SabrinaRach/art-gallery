@@ -50,6 +50,22 @@ export default function Navigation() {
           }}
         />
       </Link>
+      <Link href="/art-pieces">
+        <Image
+          src=""
+          alt="Favorites"
+          width={100}
+          height={100}
+          onMouseEnter={() => setIsHovered("favorite")}
+          onMouseLeave={() => setIsHovered(false)}
+          style={{
+            borderRadius: "20px",
+            objectFit: "contain",
+            transition: "transform 0.2s ease",
+            transform: hoveredLink === "favorite" ? "scale(1.1)" : "scale(1)",
+          }}
+        />
+      </Link>
     </nav>
   );
 }
