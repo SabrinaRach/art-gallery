@@ -9,6 +9,8 @@ align-items: center;
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    border-radius: 5px;
+    
 `;
 const StyledImage = styledComponents(Image)`
     max-width: 100%;
