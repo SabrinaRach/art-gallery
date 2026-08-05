@@ -6,6 +6,10 @@ export default function ArtPiecePage({ artPieces }) {
     const router = useRouter();
     const { slug } = router.query;
 
+    if (!artPieces) {
+        return <p>Loading...</p>;
+    }
+
     const artPiece = artPieces.find((artPiece) => artPiece.slug === slug);
 
     if (!artPiece) {
@@ -14,7 +18,7 @@ export default function ArtPiecePage({ artPieces }) {
 
     return (  
     <>
-    <ArtPieceDetails artPiece={artPiece} />;
+    <ArtPieceDetails artPiece={artPiece} />
     </>
     )
 }
