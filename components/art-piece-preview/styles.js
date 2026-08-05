@@ -111,4 +111,59 @@ export const Artwork = styled.li`
         inset 0 0 10px #000,
         0 12px 25px rgba(0,0,0,.6);
     `}
+
+    /* creating a hover effect for the art piece preview to show the title, artist, and a link to view details */
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    color: white;
+
+    opacity: 0;
+
+    transition: opacity 0.35s ease;
+
+    text-align: center;
+
+    z-index: 5;
+  }
+
+  .image-container:hover .overlay {
+    opacity: 1;
+  }
+
+  .overlay h2 {
+    margin-bottom: 10px;
+    font-family: serif;
+  }
+
+  .overlay p {
+    margin-bottom: 15px;
+  }
+
+  .overlay a {
+    color: #f5d76e;
+    text-decoration: none;
+    border: 1px solid #f5d76e;
+    padding: 8px 14px;
+  }
+
+  .overlay a:hover {
+    background: #f5d76e;
+    color: black;
+  }
 `;

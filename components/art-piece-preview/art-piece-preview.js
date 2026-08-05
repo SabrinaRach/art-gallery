@@ -34,30 +34,36 @@ export default function ArtPiecePreview({
   const frame = frameStyles[hash % frameStyles.length];
 
   return (
+    
     <Artwork
       $colSpan={colSpan}
       $rowSpan={rowSpan}
       $frame={frame}
     >
+<div className="image-container">
 
-      <Image
-        src={image}
-        alt={title}
-        width={width}
-        height={height}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      />
+  <Image
+    src={image}
+    alt={title}
+    width={width}
+    height={height}
+    style={{
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    }}
+  />
 
-      <h2>{title}</h2>
-      <p>Artist: {artist}</p>
+  <div className="overlay">
+    <h2>{title}</h2>
+    <p>Artist: {artist}</p>
 
-      <a href={`/art-pieces/${slug}`}>
-        View Details
-      </a>
+    <a href={`/art-pieces/${slug}`}>
+      View Details
+    </a>
+  </div>
+
+</div>
 
     </Artwork>
   );
