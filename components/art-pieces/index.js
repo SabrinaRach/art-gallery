@@ -1,5 +1,6 @@
+import ArtPiecePreview from '../art-piece-preview';
 
-
+export default function ArtPieces({ pieces }) {
 return (
   <div className="gallery-page">
     <h1>Gallery Page</h1>
@@ -11,3 +12,4 @@ return (
         slug={piece.slug} 
     </li>
 );
+}
