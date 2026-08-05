@@ -10,8 +10,7 @@ align-items: center;
     margin: 0 auto;
     padding: 20px;
     border-radius: 5px;
-    
-`;
+    `;
 const StyledImage = styledComponents(Image)`
     max-width: 100%;
     `
