@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Artwork } from "./styles";
 
 // Creates a component that displays a preview of a single artwork.
@@ -58,9 +59,9 @@ export default function ArtPiecePreview({
     <h2>{title}</h2>
     <p>Artist: {artist}</p>
 
-    <a href={`/art-pieces/${slug}`}>
+    <Link href={`/art-pieces/${slug}`}>
       View Details
-    </a>
+    </Link>
   </div>
 
 </div>
