@@ -1,5 +1,5 @@
 import Image from "next/image";
-import FavoriteButton from "../FavoriteButton/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
+import FavoriteButton from "../favorite-button/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
 
 export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
   const { artist, imageSource, slug } = artPiece;
@@ -15,9 +15,9 @@ export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
         alt={`spotlight: ${artist}`}
       />
       <FavoriteButton
-      slug={slug}
-      isFavorite={isFavorite}
-      onToggleFavorite={onToggleFavorite}
+        slug={slug}
+        isFavorite={isFavorite}
+        onToggleFavorite={onToggleFavorite}
       />
       <h2>Art by: {artist}</h2>
     </main>
