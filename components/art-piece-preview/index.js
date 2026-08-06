@@ -5,9 +5,9 @@ export default function ArtPiecePreview({ title, image, artist, slug }) {
   return (
     <li>
       <h2>{title}</h2>
-      <img src={image} alt={title} />
+      <img width={300} height={400} src={image} alt={title} />
       <p>Artist: {artist}</p>
-       {/* Links to the artwork detail page */}
+      {/* Links to the artwork detail page */}
       <a href={`/art-pieces/${slug}`}>View Details</a>
     </li>
   );
