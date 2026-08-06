@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Navigation() {
-  const [hoveredLink, setIsHovered] = useState(null);
+  const [hoveredLink, setHoveredLink] = useState(null);
   return (
     <nav
       style={{
@@ -24,8 +24,8 @@ export default function Navigation() {
           alt="Spotlight"
           width={100}
           height={100}
-          onMouseEnter={() => setIsHovered("spotlight")}
-          onMouseLeave={() => setIsHovered(null)}
+          onMouseEnter={() => setHoveredLink("spotlight")}
+          onMouseLeave={() => setHoveredLink(null)}
           style={{
             borderRadius: "20px",
             objectFit: "contain",
@@ -40,8 +40,8 @@ export default function Navigation() {
           alt="Gallery"
           width={100}
           height={100}
-          onMouseEnter={() => setIsHovered("gallery")}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => setHoveredLink("gallery")}
+          onMouseLeave={() => setHoveredLink(null)}
           style={{
             borderRadius: "20px",
             objectFit: "contain",
@@ -56,8 +56,8 @@ export default function Navigation() {
           alt="Favorites"
           width={100}
           height={100}
-          onMouseEnter={() => setIsHovered("favorite")}
-          onMouseLeave={() => setIsHovered(false)}
+          onMouseEnter={() => setHoveredLink("favorite")}
+          onMouseLeave={() => setHoveredLink(null)}
           style={{
             borderRadius: "20px",
             objectFit: "contain",
