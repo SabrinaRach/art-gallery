@@ -37,10 +37,10 @@ overflow-y: auto;
 const StyledArticle = styledComponents.article`
 display: flex;
 flex-direction: column;
-align-items: flex-start;
+align-items: right;
     max-width: 300px;
     max-height: 4500px;
-    margin: 0 auto;
+    margin-left: 0;
     padding: 20px;
     
     `;
@@ -52,7 +52,7 @@ const StyledImageContainer = styledComponents.div`
 `;
 //Ensures the image covers the container without distortion
 const StyledImage = styledComponents(Image)`
-     object-fit=cover; 
+     
      width:80%;
      margin-left: 10%;
     `;
