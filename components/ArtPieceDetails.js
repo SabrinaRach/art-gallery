@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import styledComponents from "styled-components";
-import FavoriteButton from "../FavoriteButton/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
+import FavoriteButton from "../favorite-button/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
 
 const StyledArticle = styledComponents.article`
 display: flex;
