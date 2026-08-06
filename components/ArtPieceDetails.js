@@ -12,7 +12,7 @@ align-items: center;
     border-radius: 5px;
     `;
 const StyledImage = styledComponents(Image)`
-    max-width: 100%;
+    max-width: 50%;
     `
     const StyledLink = styledComponents(Link)`
     margin-bottom: 20px;
