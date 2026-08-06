@@ -47,11 +47,7 @@ export default function ArtPiecePreview({
     >
 <div className="image-container">
 
- <FavoriteButton
-    slug={slug}
-    isFavorite={isFavorite}
-    onToggleFavorite={onToggleFavorite}
-  />
+
 
   <Image
     src={image}
@@ -66,6 +62,11 @@ export default function ArtPiecePreview({
   />
 
   <div className="overlay">
+     <FavoriteButton
+    slug={slug}
+    isFavorite={isFavorite}
+    onToggleFavorite={onToggleFavorite}
+  />
     <h2>{title}</h2>
     <p>Artist: {artist}</p>
 
