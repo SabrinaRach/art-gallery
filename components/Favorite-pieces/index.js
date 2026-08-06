@@ -1,4 +1,4 @@
-import { Gallery } from "./styles";
+import { Gallery } from "..art-pieces/styles";
 import ArtPiecePreview from "../art-piece-preview/art-piece-preview"; /* importing ArtPiecePreview component from the art-piece-preview directory. This component is used to display a preview of an individual art piece. */
 
 export default function FavoritePieces({ artPieces, toggleFavorite }) {
