@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+/* styling every single art piece preview with different frame styles and hover effects to show title, artist, and a link to view details */
 export const Artwork = styled.li`
   position: relative;
 
+  /* Defines how many grid columns and rows the artwork spans */
   grid-column: span ${({ $colSpan }) => $colSpan};
   grid-row: span ${({ $rowSpan }) => $rowSpan};
 
@@ -10,6 +12,7 @@ export const Artwork = styled.li`
 
   padding: 18px;
 
+  /* Default background color behind the artwork ---- might change it toghether later */
   background: #efe2c6;
 
   /* every picture has now a different frame style assigned */
@@ -119,9 +122,11 @@ export const Artwork = styled.li`
     height: 100%;
   }
 
+  /* Overlay that appears when the user hovers over the artwork */
   .overlay {
     position: absolute;
 
+    /* Makes the overlay cover the entire image ---- might change together later */
     inset: 0;
 
     display: flex;
@@ -139,22 +144,27 @@ export const Artwork = styled.li`
 
     text-align: center;
 
+    /* Ensures the overlay appears above the image */
     z-index: 5;
   }
 
+  /* Show the overlay when hovering over the image container */
   .image-container:hover .overlay {
     opacity: 1;
   }
 
+  /* Artwork title styling */
   .overlay h2 {
     margin-bottom: 10px;
     font-family: serif;
   }
 
+  /* Artist name or additional information */
   .overlay p {
     margin-bottom: 15px;
   }
 
+  /* Styling for the "View Details" link */
   .overlay a {
     color: #f5d76e;
     text-decoration: none;
