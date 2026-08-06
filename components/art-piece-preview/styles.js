@@ -148,6 +148,13 @@ export const Artwork = styled.li`
     z-index: 5;
   }
 
+  /*   Position for favorite button, rest of styling is in favorite-button.js */
+  .overlay button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
   /* Show the overlay when hovering over the image container */
   .image-container:hover .overlay {
     opacity: 1;
