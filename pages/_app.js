@@ -52,7 +52,11 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Navigation />
-      <Component {...pageProps} artpieceInfo={artpieceInfo} toggleFavorite={toggleFavorite} />
+      <Component
+        {...pageProps}
+        artpieceInfo={artpieceInfo}
+        toggleFavorite={toggleFavorite}
+      />
     </>
   );
 }

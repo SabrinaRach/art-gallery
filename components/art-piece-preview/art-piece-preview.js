@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Artwork } from "./styles";
+import FavoriteButton from "../FavoriteButton/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
+
 
 // Creates a component that displays a preview of a single artwork.
 // Receives artwork information as props.
@@ -12,6 +14,8 @@ export default function ArtPiecePreview({
   slug,
   width,
   height,
+  isFavorite,
+  onToggleFavorite, 
 }) {
 
   const hash = [...slug].reduce(
@@ -42,6 +46,12 @@ export default function ArtPiecePreview({
       $frame={frame}
     >
 <div className="image-container">
+
+ <FavoriteButton
+    slug={slug}
+    isFavorite={isFavorite}
+    onToggleFavorite={onToggleFavorite}
+  />
 
   <Image
     src={image}
