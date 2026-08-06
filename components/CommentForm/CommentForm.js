@@ -29,7 +29,11 @@ export default function CommentForm({ onSubmitComment }) {
         ></textarea>
         <span>
           <button
-            style={{ height: "50px", width: "80px", marginBottom: "5%" }}
+            style={{
+              height: "50px",
+              width: "80px",
+              marginBottom: "5%",
+            }}
             type="submit"
           >
             Post

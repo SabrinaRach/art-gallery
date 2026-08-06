@@ -30,29 +30,31 @@ overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
+  padding: 0rem;
   border-right: 2px solid #dcdfe5;
     `;
 
 const StyledArticle = styledComponents.article`
 display: flex;
 flex-direction: column;
-align-items: center;
+align-items: flex-start;
     max-width: 300px;
     max-height: 4500px;
     margin: 0 auto;
     padding: 20px;
-    border-radius: 5px;
+    
     `;
 const StyledImageContainer = styledComponents.div`
   position: relative;
   width: 100%;
-  height: 300px; /* Gives the Next.js fill image a defined area */
-  margin-bottom: 20px;
+  
+  
 `;
 //Ensures the image covers the container without distortion
 const StyledImage = styledComponents(Image)`
      object-fit=cover; 
+     width:80%;
+     margin-left: 10%;
     `;
 const StyledLink = styledComponents(Link)`
     margin-bottom: 20px;
@@ -61,6 +63,7 @@ const StyledLink = styledComponents(Link)`
 const StyledHeading = styledComponents.h1`
     font-size: 2rem;
     margin-bottom: 10px;
+    text-align: center;
 `;
 const StyledSubheading = styledComponents.h2`
     font-size: 1.5rem;
@@ -104,11 +107,16 @@ export default function ArtPieceDetails({ artPiece }) {
   const currentComments = artComments[artPiece.slug] || [];
   return (
     <>
-      <StyledHeading>Name of the Artwork: {artPiece.name}</StyledHeading>
+      <StyledHeading>{artPiece.name}</StyledHeading>
       <StyledSplitContainer>
         <StyledLeftPanel>
           <StyledImageContainer>
-            <StyledImage src={artPiece.imageSource} alt={artPiece.name} fill />
+            <StyledImage
+              src={artPiece.imageSource}
+              alt={artPiece.name}
+              width={500}
+              height={500}
+            />
           </StyledImageContainer>
         </StyledLeftPanel>
 
@@ -117,9 +125,10 @@ export default function ArtPieceDetails({ artPiece }) {
             {/* <StyledLink href="/art-pieces">Back to Gallery</StyledLink> */}
 
             <StyledSpan>
-              Artist: {artPiece.artist} {artPiece.year}
+              Artist: <strong>{artPiece.artist}</strong>{" "}
             </StyledSpan>
             <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
+            <StyledParagraph>Year: {artPiece.year}</StyledParagraph>
             {/* New Comment Components */}
             <Comments comments={currentComments} />
             <CommentForm onSubmitComment={handleAddComment} />
