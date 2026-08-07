@@ -9,11 +9,16 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: Garamond,Bodoni, Didot, "Didot LT STD", "Hoefler Text";
   }
 
   main{
-  width:60%;
-  margin-left:30%;
+  width:30%;
+  height:30%;
+  margin-left:35%;
+  
+  }
+  h1{
+  text-align:center;
   }
 `;

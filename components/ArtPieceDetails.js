@@ -19,7 +19,7 @@ const StyledRightPanel = styledComponents.div`
 align: right;
 height: 100%;
   overflow-y: auto; /* Enables independent vertical scrolling for details & comments */
-  background-color: #c5eae7;
+  background-color: rgb(116, 125, 124);
   padding: 2rem;
 width:50%;
     `;

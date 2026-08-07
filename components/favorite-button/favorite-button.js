@@ -20,6 +20,10 @@ export const FavoriteButtonStyle = styled.button`
   padding: 0;
   margin: 0;
   cursor: pointer;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 10;
   span {
     display: block;
 
