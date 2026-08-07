@@ -107,7 +107,7 @@ export default function ArtPieceDetails({ artPiece, toggleFavorite }) {
   }
 
   // Get comments specific to this art piece using its slug or ID
-  const currentComments = artComments[artPiece.slug] || [];
+  const currentComments = artComments[artPiece.slug] || []; // || [] handles the case where there are no comments for this art piece yet
   return (
     <>
       <StyledHeading>{artPiece.name}</StyledHeading>
