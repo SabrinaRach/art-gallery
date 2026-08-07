@@ -3,7 +3,7 @@ import Image from "next/image";
 This component is used to allow users to mark an art piece as a favorite. */
 import FavoriteButton from "../favorite-button/favorite-button.js";
 
-export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
+export default function Spotlight({ artPiece, isFavorite, toggleFavorite }) {
   const { artist, imageSource, slug } = artPiece;
   console.log("I am inside Spotlight.js", artist);
   return (
@@ -19,7 +19,7 @@ export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
       <FavoriteButton
         slug={slug}
         isFavorite={isFavorite}
-        toggleFavorite={onToggleFavorite}
+        toggleFavorite={toggleFavorite}
       />
       <h2>Art by: {artist}</h2>
     </main>
