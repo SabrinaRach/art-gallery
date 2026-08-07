@@ -20,7 +20,7 @@ export default function ArtPieces({ artPieces, toggleFavorite }) {
             width={piece.dimensions.width}
             height={piece.dimensions.height}
             isFavorite={piece.isFavorite}
-            onToggleFavorite={toggleFavorite}
+            toggleFavorite={toggleFavorite}
           />
         ))}
       </Gallery>

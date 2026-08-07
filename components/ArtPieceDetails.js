@@ -123,7 +123,7 @@ export default function ArtPieceDetails({ artPiece, toggleFavorite }) {
             <FavoriteButton
               slug={artPiece.slug}
               isFavorite={artPiece.isFavorite}
-              onToggleFavorite={toggleFavorite}
+              toggleFavorite={toggleFavorite}
             />
           </StyledImageContainer>
         </StyledLeftPanel>

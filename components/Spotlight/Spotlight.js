@@ -19,7 +19,7 @@ export default function Spotlight({ artPiece, isFavorite, onToggleFavorite }) {
       <FavoriteButton
         slug={slug}
         isFavorite={isFavorite}
-        onToggleFavorite={onToggleFavorite}
+        toggleFavorite={onToggleFavorite}
       />
       <h2>Art by: {artist}</h2>
     </main>
