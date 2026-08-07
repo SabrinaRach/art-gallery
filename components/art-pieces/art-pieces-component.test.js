@@ -1,7 +1,7 @@
 /* --- TESTING: ArtPiece Component --- */
 
 /* Testing if all art pieces passed through the artPieces prop are rendered */
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ArtPieces from "./art-pieces-component";
 
 /* creating two test art piece objects to use in the tests 
