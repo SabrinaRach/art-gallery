@@ -1,5 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 
+
+
+
+
+
+
+
 export default createGlobalStyle`
   *,
   *::before,
@@ -9,7 +16,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: var(--font-cormorant), Georgia, 'Times New Roman', serif;
   }
 
   main{
@@ -17,3 +24,18 @@ export default createGlobalStyle`
   margin-left:30%;
   }
 `;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
