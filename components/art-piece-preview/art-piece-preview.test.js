@@ -1,4 +1,4 @@
-/* --- TESTING: ArtPiecePreview Component --- */
+/* --- TESTING: ArtPiecePreview --- */
 
 /* Testing if the ArtPiecePreview component renders the title, artist, and image correctly. 
 Check if FavoriteButton is rendered and if the toggleFavorite function is called when the button is clicked. */
