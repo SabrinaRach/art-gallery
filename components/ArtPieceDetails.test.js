@@ -3,7 +3,7 @@
 /* testing if it renders the art piece details correctly, including the title, artist, genre, and year 
 testing if it renders comments correctly */
 
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ArtPieceDetails from "./ArtPieceDetails";
 
 /* creating a test art piece object to use in the tests 
@@ -25,18 +25,20 @@ const testArtPiece = {
 
 test("renders art piece details correctly", () => {
   render(
-    <ArtPieceDetails
-      artPiece={testArtPiece}
-      toggleFavorite={jest.fn()}
-    />
+    <ArtPieceDetails artPiece={testArtPiece} toggleFavorite={jest.fn()} />
   );
 
+  // Checks if the art piece title is rendered correctly
   expect(screen.getByText(testArtPiece.name)).toBeInTheDocument();
-  expect(
-    screen.getByText(`Artist:`)
-  ).toBeInTheDocument();
-  expect(screen.getByText(testArtPiece.genre)).toBeInTheDocument();
-  expect(screen.getByText(String(testArtPiece.year))).toBeInTheDocument();
+
+  // Checks if the artist label is displayed
+  expect(screen.getByText(`Artist:`)).toBeInTheDocument();
+
+  // Checks if the genre information is rendered correctly
+  expect(screen.getByText(`Genre: ${testArtPiece.genre}`)).toBeInTheDocument();
+
+  // Checks if the year information is rendered correctly
+  expect(screen.getByText(`Year: ${testArtPiece.year}`)).toBeInTheDocument();
 });
 
 /* 2. testing if it renders comments correctly */
@@ -62,11 +64,9 @@ test("renders existing comments", () => {
   );
 
   render(
-    <ArtPieceDetails
-      artPiece={testArtPiece}
-      toggleFavorite={jest.fn()}
-    />
+    <ArtPieceDetails artPiece={testArtPiece} toggleFavorite={jest.fn()} />
   );
 
+  /* check if the comment count is displayed correctly */
   expect(screen.getByText("1 comments")).toBeInTheDocument();
 });
