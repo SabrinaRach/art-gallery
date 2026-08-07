@@ -1,12 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
-
-
-
-
-
-
 export default createGlobalStyle`
   *,
   *::before,
@@ -20,10 +13,13 @@ export default createGlobalStyle`
   }
 
   main{
-  width:60%;
-  margin-left:30%;
+  width:30%;
+  height:30%;
+  margin-left:35%;
   }
-
+h1{
+  text-align:center;
+  }
   /* RESPONSIVE DESIGN */
 
 /*  tablet */
@@ -35,18 +31,3 @@ export default createGlobalStyle`
 @media (max-width: 600px) {
 }
 `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -25,6 +25,10 @@ right: 50px;
   padding: 10px;
   margin: 0;
   cursor: pointer;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 10;
   span {
     display: block;
 

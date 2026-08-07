@@ -37,15 +37,15 @@ export default function ArtPiecePreview({
     <Artwork $colSpan={colSpan} $rowSpan={rowSpan} $frame={frame}>
       <div className="image-container">
         <Image
-          src={image}
-          alt={title}
-          width={width}
-          height={height}
           style={{
             width: "100%",
             height: "100%",
             objectFit: "cover",
           }}
+          src={image}
+          alt={title}
+          width={width}
+          height={height}
         />
 
         <div className="overlay">

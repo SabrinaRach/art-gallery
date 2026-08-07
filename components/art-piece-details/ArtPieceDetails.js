@@ -67,7 +67,7 @@ const StyledLink = styledComponents(Link)`
      width:80%;
      margin-left: 10%;
     `;
-    const StyledInfo = styledComponents.div`
+const StyledInfo = styledComponents.div`
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -95,7 +95,11 @@ const StyledParagraph = styledComponents.p`
     margin-bottom: 10px;
 `;
 
-export default function ArtPieceDetails({ artPiece, toggleFavorite, children }) {
+export default function ArtPieceDetails({
+  artPiece,
+  toggleFavorite,
+  children,
+}) {
   // Retrieve/initialize comments from localStorage or default to an empty object dictionary
   // { [slug]: [comments] }
   const [artComments, setArtComments] = useState(() => {
@@ -139,15 +143,15 @@ export default function ArtPieceDetails({ artPiece, toggleFavorite, children }) 
               isFavorite={artPiece.isFavorite}
               toggleFavorite={toggleFavorite}
             />
-          </StyledImageContainer> 
-        <StyledInfo>
-          <StyledSpan>
+          </StyledImageContainer>
+          <StyledInfo>
+            <StyledSpan>
               Artist: <strong>{artPiece.artist}</strong>{" "}
             </StyledSpan>
             <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
             <StyledParagraph>Year of Origin: {artPiece.year}</StyledParagraph>
-            Colors:{children}  
-        </StyledInfo>
+            Colors:{children}
+          </StyledInfo>
         </StyledLeftPanel>
 
         <StyledRightPanel>
