@@ -9,6 +9,7 @@ import CommentForm from "./CommentForm/CommentForm";
 import { useState, useEffect } from "react";
 import { Artwork } from "./art-piece-preview/styles";
 
+
 //Styled Panel to split screen side by side
 const StyledSplitContainer = styledComponents.div`
 display: flex;
