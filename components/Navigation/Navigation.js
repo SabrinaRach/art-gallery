@@ -50,7 +50,7 @@ export default function Navigation() {
           }}
         />
       </Link>
-      <Link href="/art-pieces">
+      <Link href="/Favorites">
         <Image
           src=""
           alt="Favorites"

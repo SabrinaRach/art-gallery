@@ -14,7 +14,7 @@ export default function ArtPiecePreview({
   width,
   height,
   isFavorite,
-  onToggleFavorite,
+  toggleFavorite,
 }) {
   const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
 
@@ -52,7 +52,7 @@ export default function ArtPiecePreview({
           <FavoriteButton
             slug={slug}
             isFavorite={isFavorite}
-            onToggleFavorite={onToggleFavorite}
+            toggleFavorite={toggleFavorite}
           />
           <h2>{title}</h2>
           <p>Artist: {artist}</p>

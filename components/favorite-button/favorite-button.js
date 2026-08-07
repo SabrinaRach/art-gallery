@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export default function FavoriteButton({ slug, isFavorite, onToggleFavorite }) {
+export default function FavoriteButton({ slug, isFavorite, toggleFavorite }) {
   return (
     <FavoriteButtonStyle
       type="button"
-      onClick={() => onToggleFavorite(slug)}
+      onClick={() => toggleFavorite(slug)}
       $isFavorite={isFavorite}
       aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
     >
