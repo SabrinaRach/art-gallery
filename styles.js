@@ -16,4 +16,18 @@ export default createGlobalStyle`
   width:60%;
   margin-left:30%;
   }
+
+  /* RESPONSIVE DESIGN */
+
+/*  tablet */
+@media (max-width: 900px) {
+  
+}
+
+/*  smartphone */
+@media (max-width: 600px) {
+}
 `;
+
+
+
