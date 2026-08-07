@@ -15,7 +15,8 @@ export default function App({ Component, pageProps }) {
     fetcher
   );
 
-  /* if data changes, update the artpieceInfo state with the new data. This ensures that the component always has the latest information about the art pieces. */
+  /* if data changes, update the artpieceInfo state with the new data.
+   This ensures that the component always has the latest information about the art pieces. */
   useEffect(() => {
     if (data) {
       setArtpieceInfo(
@@ -54,7 +55,7 @@ export default function App({ Component, pageProps }) {
       <Navigation />
       <Component
         {...pageProps}
-        artpieceInfo={artpieceInfo}
+        artPieces={artpieceInfo}
         toggleFavorite={toggleFavorite}
       />
     </>

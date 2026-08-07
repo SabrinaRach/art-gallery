@@ -2,15 +2,15 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import ArtPieceDetails from "../../components/ArtPieceDetails";
 
-export default function ArtPiecePage({ artpieceInfo, toggleFavorite }) {
+export default function ArtPiecePage({ artPieces, toggleFavorite }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  if (!artpieceInfo) {
+  if (!artPieces) {
     return <p>Loading...</p>;
   }
 
-  const artPiece = artpieceInfo.find((artPiece) => artPiece.slug === slug);
+  const artPiece = artPieces.find((artPiece) => artPiece.slug === slug);
 
   if (!artPiece) {
     return <p>Loading...</p>;

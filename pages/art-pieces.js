@@ -1,7 +1,5 @@
 import ArtPieces from "@/components/art-pieces/art-pieces-component";
 
-export default function ArtPiecesPage({ artpieceInfo, toggleFavorite }) {
-  return (
-    <ArtPieces artpieceInfo={artpieceInfo} toggleFavorite={toggleFavorite} />
-  );
+export default function ArtPiecesPage({ artPieces, toggleFavorite }) {
+  return <ArtPieces artPieces={artPieces} toggleFavorite={toggleFavorite} />;
 }

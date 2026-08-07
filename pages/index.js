@@ -1,7 +1,7 @@
 import Spotlight from "../components/Spotlight/Spotlight";
 import { useState, useEffect } from "react";
 
-export default function HomePage({ artPieces }) {
+export default function HomePage({ artPieces, toggleFavorite }) {
   // State to hold the currently selected random artwork
   const [spotlightArt, setSpotlightArt] = useState(null);
 
@@ -22,5 +22,5 @@ export default function HomePage({ artPieces }) {
     return <p>Loading spotlight artwork...</p>;
   }
 
-  return <Spotlight artPiece={spotlightArt} />;
+  return <Spotlight artPiece={spotlightArt} toggleFavorite={toggleFavorite} />;
 }
