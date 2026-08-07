@@ -1,27 +1,72 @@
 import Link from "next/link";
 import Image from "next/image";
 import styledComponents from "styled-components";
-import FavoriteButton from "./favorite-button/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
+/* importing FavoriteButton component from the favorite-button directory. 
+This component is used to allow users to mark an art piece as a favorite. */
+import FavoriteButton from "./favorite-button/favorite-button.js";
+import Comments from "./Comments/Comments";
+import CommentForm from "./CommentForm/CommentForm";
+import { useState, useEffect } from "react";
+import { Artwork } from "./art-piece-preview/styles";
+
+//Styled Panel to split screen side by side
+const StyledSplitContainer = styledComponents.div`
+display: flex;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden; /* Prevents scrollbars from appearing */`;
+const StyledRightPanel = styledComponents.div`
+align: right;
+height: 100%;
+  overflow-y: auto; /* Enables independent vertical scrolling for details & comments */
+  background-color: #c5eae7;
+  padding: 2rem;
+width:50%;
+    `;
+const StyledLeftPanel = styledComponents.div`
+flex:1;
+height:100%;
+width:50%;
+align: left;
+overflow-y: auto;
+  background-color: #959292; /* Dark background to showcase art nicely */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem;
+  border-right: 2px solid #dcdfe5;
+    `;
 
 const StyledArticle = styledComponents.article`
 display: flex;
 flex-direction: column;
-align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
+align-items: right;
+    max-width: 300px;
+    max-height: 4500px;
+    margin-left: 0;
     padding: 20px;
-    border-radius: 5px;
+    
     `;
+const StyledImageContainer = styledComponents.div`
+  position: relative;
+  width: 100%;
+  
+  
+`;
+//Ensures the image covers the container without distortion
 const StyledImage = styledComponents(Image)`
     max-width: 100%;
     `;
 const StyledLink = styledComponents(Link)`
-    margin-bottom: 20px;
-    text-decoration: none;
+     
+     width:80%;
+     margin-left: 10%;
     `;
+
 const StyledHeading = styledComponents.h1`
-    font-size: 2.25rem;
+    font-size: 2rem;
     margin-bottom: 10px;
+    text-align: center;
 `;
 const StyledSubheading = styledComponents.h2`
     font-size: 1.5rem;
@@ -37,26 +82,67 @@ const StyledParagraph = styledComponents.p`
 `;
 
 export default function ArtPieceDetails({ artPiece, toggleFavorite }) {
+  // Retrieve/initialize comments from localStorage or default to an empty object dictionary
+  // { [slug]: [comments] }
+  const [artComments, setArtComments] = useState(() => {
+    const saved = localStorage.getItem("art-comments");
+    return saved ? JSON.parse(saved) : {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem("art-comments", JSON.stringify(artComments));
+  }, [artComments]);
+
+  function handleAddComment(newCommentText) {
+    const timestamp = new Date().toLocaleString(); // Formats date and time
+    const newComment = {
+      text: newCommentText,
+      date: timestamp,
+    };
+
+    setArtComments({
+      ...artComments,
+      [artPiece.slug]: [newComment, ...currentComments],
+    });
+  }
+
+  // Get comments specific to this art piece using its slug or ID
+  const currentComments = artComments[artPiece.slug] || [];
   return (
-    <StyledArticle>
-      <StyledLink href="/art-pieces">Back to Gallery</StyledLink>
-      <StyledImage
-        src={artPiece.imageSource}
-        width={artPiece.dimensions.width}
-        height={artPiece.dimensions.height}
-        alt={artPiece.name}
-      />
-      <FavoriteButton
-        slug={artPiece.slug}
-        isFavorite={artPiece.isFavorite}
-        onToggleFavorite={toggleFavorite}
-      />
-      <StyledHeading>Details</StyledHeading>
-      <StyledSubheading>Name of the Artwork: {artPiece.name}</StyledSubheading>
-      <StyledSpan>
-        Artist: {artPiece.artist} {artPiece.year}
-      </StyledSpan>
-      <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
-    </StyledArticle>
+    <>
+      <StyledHeading>{artPiece.name}</StyledHeading>
+      <StyledSplitContainer>
+        <StyledLeftPanel>
+          <StyledImageContainer>
+            <StyledImage
+              src={artPiece.imageSource}
+              alt={artPiece.name}
+              width={500}
+              height={500}
+            />
+            <FavoriteButton
+              slug={artPiece.slug}
+              isFavorite={artPiece.isFavorite}
+              onToggleFavorite={toggleFavorite}
+            />
+          </StyledImageContainer>
+        </StyledLeftPanel>
+
+        <StyledRightPanel>
+          <StyledArticle>
+            {/* <StyledLink href="/art-pieces">Back to Gallery</StyledLink> */}
+
+            <StyledSpan>
+              Artist: <strong>{artPiece.artist}</strong>{" "}
+            </StyledSpan>
+            <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
+            <StyledParagraph>Year: {artPiece.year}</StyledParagraph>
+            {/* New Comment Components */}
+            <Comments comments={currentComments} />
+            <CommentForm onSubmitComment={handleAddComment} />
+          </StyledArticle>
+        </StyledRightPanel>
+      </StyledSplitContainer>
+    </>
   );
 }
