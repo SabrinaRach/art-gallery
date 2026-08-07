@@ -17,3 +17,5 @@ export default createGlobalStyle`
   margin-left:30%;
   }
 `;
+
+
