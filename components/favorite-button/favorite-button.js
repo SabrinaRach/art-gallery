@@ -17,9 +17,12 @@ export default function FavoriteButton({ slug, isFavorite, toggleFavorite }) {
 
 /* Favorite Button styling */
 export const FavoriteButtonStyle = styled.button`
+position: absolute;
+top: 10px;
+right: 50px;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   cursor: pointer;
   span {

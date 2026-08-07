@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
+import { cormorant, robotoMono } from "../lib/fonts.js";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -25,7 +26,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" className={`${cormorant.variable} ${robotoMono.variable}`}>
         <Head />
         <body>
           <Main />

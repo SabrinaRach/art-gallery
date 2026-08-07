@@ -3,11 +3,12 @@ import Image from "next/image";
 import styledComponents from "styled-components";
 /* importing FavoriteButton component from the favorite-button directory. 
 This component is used to allow users to mark an art piece as a favorite. */
-import FavoriteButton from "./favorite-button/favorite-button.js";
-import Comments from "./Comments/Comments";
-import CommentForm from "./CommentForm/CommentForm";
+import FavoriteButton from "../favorite-button/favorite-button.js";
+import Comments from "../Comments/Comments.js";
+import CommentForm from "../CommentForm/CommentForm.js";
 import { useState, useEffect } from "react";
-import { Artwork } from "./art-piece-preview/styles";
+import { Artwork } from "../art-piece-preview/styles.js";
+import { ColorPalette } from "../Color-palette/ColorPalette.js";
 
 //Styled Panel to split screen side by side
 const StyledSplitContainer = styledComponents.div`
@@ -19,7 +20,7 @@ const StyledRightPanel = styledComponents.div`
 align: right;
 height: 100%;
   overflow-y: auto; /* Enables independent vertical scrolling for details & comments */
-  background-color: #c5eae7;
+  background-color: #5F7A6B;
   padding: 2rem;
 width:50%;
     `;
@@ -29,7 +30,7 @@ height:100%;
 width:50%;
 align: left;
 overflow-y: auto;
-  background-color: #959292; /* Dark background to showcase art nicely */
+  background-color: #8A8175; /* Dark background to showcase art nicely */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -38,6 +39,7 @@ overflow-y: auto;
     `;
 
 const StyledArticle = styledComponents.article`
+overflow: hidden;
 display: flex;
 flex-direction: column;
 align-items: right;
@@ -50,23 +52,35 @@ align-items: right;
 const StyledImageContainer = styledComponents.div`
   position: relative;
   width: 100%;
+  padding: 10px;
+  margin: 0;
   
   
 `;
 //Ensures the image covers the container without distortion
 const StyledImage = styledComponents(Image)`
     max-width: 100%;
+    max-height: 80vh;
     `;
 const StyledLink = styledComponents(Link)`
      
      width:80%;
      margin-left: 10%;
     `;
+    const StyledInfo = styledComponents.div`
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    padding: 10px;
+    min-width: 400px;
+    min-height: 500px;
+    `;
 
 const StyledHeading = styledComponents.h1`
     font-size: 2rem;
     margin-bottom: 10px;
     text-align: center;
+    
 `;
 const StyledSubheading = styledComponents.h2`
     font-size: 1.5rem;
@@ -81,7 +95,7 @@ const StyledParagraph = styledComponents.p`
     margin-bottom: 10px;
 `;
 
-export default function ArtPieceDetails({ artPiece, toggleFavorite }) {
+export default function ArtPieceDetails({ artPiece, toggleFavorite, children }) {
   // Retrieve/initialize comments from localStorage or default to an empty object dictionary
   // { [slug]: [comments] }
   const [artComments, setArtComments] = useState(() => {
@@ -125,18 +139,20 @@ export default function ArtPieceDetails({ artPiece, toggleFavorite }) {
               isFavorite={artPiece.isFavorite}
               toggleFavorite={toggleFavorite}
             />
-          </StyledImageContainer>
+          </StyledImageContainer> 
+        <StyledInfo>
+          <StyledSpan>
+              Artist: <strong>{artPiece.artist}</strong>{" "}
+            </StyledSpan>
+            <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
+            <StyledParagraph>Year of Origin: {artPiece.year}</StyledParagraph>
+            Colors:{children}  
+        </StyledInfo>
         </StyledLeftPanel>
 
         <StyledRightPanel>
           <StyledArticle>
             {/* <StyledLink href="/art-pieces">Back to Gallery</StyledLink> */}
-
-            <StyledSpan>
-              Artist: <strong>{artPiece.artist}</strong>{" "}
-            </StyledSpan>
-            <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
-            <StyledParagraph>Year: {artPiece.year}</StyledParagraph>
             {/* New Comment Components */}
             <Comments comments={currentComments} />
             <CommentForm onSubmitComment={handleAddComment} />
