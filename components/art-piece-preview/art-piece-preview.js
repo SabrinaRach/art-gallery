@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Artwork } from "./styles";
+import FavoriteButton from "../favorite-button/favorite-button.js"; /* importing FavoriteButton component from the favorite-button directory. This component is used to allow users to mark an art piece as a favorite. */
 
 // Creates a component that displays a preview of a single artwork.
 // Receives artwork information as props.
@@ -12,17 +13,15 @@ export default function ArtPiecePreview({
   slug,
   width,
   height,
+  isFavorite,
+  onToggleFavorite,
 }) {
-
-  const hash = [...slug].reduce(
-    (sum, char) => sum + char.charCodeAt(0),
-    0
-  );
+  const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
 
   const colSpan = 2 + (hash % 4);
   const rowSpan = 10 + (hash % 12);
 
-/*  naming different frame styles */
+  /*  naming different frame styles */
   const frameStyles = [
     "baroqueGold",
     "empireGold",
@@ -35,37 +34,32 @@ export default function ArtPiecePreview({
   const frame = frameStyles[hash % frameStyles.length];
 
   return (
-    
-    <Artwork
-      $colSpan={colSpan}
-      $rowSpan={rowSpan}
-      $frame={frame}
-    >
-<div className="image-container">
+    <Artwork $colSpan={colSpan} $rowSpan={rowSpan} $frame={frame}>
+      <div className="image-container">
+        <Image
+          src={image}
+          alt={title}
+          width={width}
+          height={height}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
 
-  <Image
-    src={image}
-    alt={title}
-    width={width}
-    height={height}
-    style={{
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-    }}
-  />
+        <div className="overlay">
+          <FavoriteButton
+            slug={slug}
+            isFavorite={isFavorite}
+            onToggleFavorite={onToggleFavorite}
+          />
+          <h2>{title}</h2>
+          <p>Artist: {artist}</p>
 
-  <div className="overlay">
-    <h2>{title}</h2>
-    <p>Artist: {artist}</p>
-
-    <Link href={`/art-pieces/${slug}`}>
-      View Details
-    </Link>
-  </div>
-
-</div>
-
+          <Link href={`/art-pieces/${slug}`}>View Details</Link>
+        </div>
+      </div>
     </Artwork>
   );
 }
