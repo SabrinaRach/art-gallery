@@ -43,10 +43,15 @@ test("renders title, artist, and image correctly", () => {
       toggleFavorite={jest.fn()}
     />
   );
+  // Testing if the art piece title is rendered correctly
   expect(screen.getByText(testArtPiece.name)).toBeInTheDocument();
+
+  // Testing if the artist information is rendered correctly
   expect(
     screen.getByText(`Artist: ${testArtPiece.artist}`)
   ).toBeInTheDocument();
+
+  // Testing if the image is rendered with the correct source attribute
   expect(screen.getByAltText(testArtPiece.name)).toHaveAttribute(
     "src",
     testArtPiece.imageSource
