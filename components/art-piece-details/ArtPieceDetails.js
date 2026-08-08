@@ -37,20 +37,26 @@ overflow-y: auto;
   padding: 0rem;
   border-right: 2px solid #dcdfe5;
     `;
-
+const StyleBody = styledComponents.body`
+width: 100%;
+height: 100%;
+/* Dynamically set background color, falling back to a default if undefined */
+  background-color: ${(props) => props.$bgColor || "#8A8175"}; 
+  transition: background-color 0.3s ease;`;
 const StyledArticle = styledComponents.article`
 overflow: hidden;
 display: flex;
 flex-direction: column;
-align-items: right;
-    max-width: 300px;
-    max-height: 4500px;
-    margin-left: 0;
+align-items: center;
+    width: 50%;
+   height: 70%;
+    margin-left: 30%;
     padding: 20px;
+    
     
     `;
 const StyledImageContainer = styledComponents.div`
-  position: relative;
+  
   width: 100%;
   padding: 10px;
   margin: 0;
@@ -59,8 +65,9 @@ const StyledImageContainer = styledComponents.div`
 `;
 //Ensures the image covers the container without distortion
 const StyledImage = styledComponents(Image)`
-    max-width: 100%;
-    max-height: 80vh;
+    width: 100%;
+    height: 80vh;
+    align-self: center;
     `;
 const StyledLink = styledComponents(Link)`
      
@@ -72,8 +79,7 @@ const StyledInfo = styledComponents.div`
     flex-direction: column;
     align-items: left;
     padding: 10px;
-    min-width: 400px;
-    min-height: 500px;
+   
     `;
 
 const StyledHeading = styledComponents.h1`
@@ -100,6 +106,27 @@ export default function ArtPieceDetails({
   toggleFavorite,
   children,
 }) {
+  console.log("children", { children });
+  // Extract the first color from the array to use as the background, with a fallback
+  const primaryColor =
+    artPiece?.colors?.[artPiece.colors.length - 1] || "#8A8175";
+
+  //-------------------------------------------------------------------------------------------------------------------
+  /*  naming different frame styles */
+  const frameStyles = [
+    "baroqueGold",
+    "empireGold",
+    "darkWalnut",
+    "renaissanceCarved",
+    "louisXVI",
+    "ebonyBlack",
+  ];
+  const slug = artPiece.slug || ""; // Ensure slug is defined to avoid errors
+  const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  const frame = frameStyles[hash % frameStyles.length];
+  const colSpan = 2 + (hash % 4);
+  const rowSpan = 10 + (hash % 12);
+  //-------------------------------------------------------------------------------------------------------------------
   // Retrieve/initialize comments from localStorage or default to an empty object dictionary
   // { [slug]: [comments] }
   const [artComments, setArtComments] = useState(() => {
@@ -128,41 +155,45 @@ export default function ArtPieceDetails({
   const currentComments = artComments[artPiece.slug] || []; // || [] handles the case where there are no comments for this art piece yet
   return (
     <>
-      <StyledHeading>{artPiece.name}</StyledHeading>
-      <StyledSplitContainer>
-        <StyledLeftPanel>
-          <StyledImageContainer>
-            <StyledImage
-              src={artPiece.imageSource}
-              alt={artPiece.name}
-              width={500}
-              height={500}
-            />
-            <FavoriteButton
-              slug={artPiece.slug}
-              isFavorite={artPiece.isFavorite}
-              toggleFavorite={toggleFavorite}
-            />
-          </StyledImageContainer>
+      <StyleBody $bgColor={primaryColor}>
+        <StyledArticle>
+          <StyledHeading>{artPiece.name}</StyledHeading>
+          <Artwork $colSpan={colSpan} $rowSpan={rowSpan} $frame={frame}>
+            <div className="image-container">
+              <StyledImageContainer>
+                <Image
+                  src={artPiece.imageSource}
+                  alt={artPiece.title}
+                  width={artPiece.dimensions.width}
+                  height={artPiece.dimensions.height}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
+                />
+                <FavoriteButton
+                  slug={artPiece.slug}
+                  isFavorite={artPiece.isFavorite}
+                  toggleFavorite={toggleFavorite}
+                />
+              </StyledImageContainer>
+            </div>
+          </Artwork>
+
+          {children}
+
           <StyledInfo>
             <StyledSpan>
               Artist: <strong>{artPiece.artist}</strong>{" "}
             </StyledSpan>
             <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
             <StyledParagraph>Year of Origin: {artPiece.year}</StyledParagraph>
-            Colors:{children}
           </StyledInfo>
-        </StyledLeftPanel>
-
-        <StyledRightPanel>
-          <StyledArticle>
-            {/* <StyledLink href="/art-pieces">Back to Gallery</StyledLink> */}
-            {/* New Comment Components */}
-            <Comments comments={currentComments} />
-            <CommentForm onSubmitComment={handleAddComment} />
-          </StyledArticle>
-        </StyledRightPanel>
-      </StyledSplitContainer>
+          <Comments comments={currentComments} />
+          <CommentForm onSubmitComment={handleAddComment} />
+        </StyledArticle>
+      </StyleBody>
     </>
   );
 }
