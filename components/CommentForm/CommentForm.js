@@ -4,13 +4,16 @@ import styled from "styled-components";
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
+
   gap: 12px;
   margin-top: 20px;
+
   width: 100%;
   max-width: 500px;
+  box-sizing: border-box;
+
   background-color: #eae5e5;
   border-radius: 8px;
-  box-sizing: border-box;
 `;
 
 const StyledHeading = styled.h3`
@@ -24,30 +27,39 @@ const InputGroup = styled.div`
   flex-wrap: wrap;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-end;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  align-items: flex-start;
+
   padding: 0 10px 10px;
 
   @media (min-width: 400px) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
   }
 `;
 
 // 2. Style the comment text box
 const StyledTextarea = styled.textarea`
   width: 320px;
-  max-width: calc(100vw - 40px);
-  min-width: 0;
+  max-width: 100%;
   height: 90px;
-  padding: 10px 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  box-sizing: border-box;
+
+  padding: 10px;
+  margin: 0;
+
   border: 1px solid #ccc;
   border-radius: 8px;
+
   background-color: #dcdcdc;
   color: #333;
+
   font-size: 0.95rem;
   resize: none;
+
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -69,14 +81,19 @@ const StyledButton = styled.button`
   height: 50px;
   width: 80px;
   min-width: 80px;
+  box-sizing: border-box;
+
   background-color: #5f7a6b;
   color: #ffffff;
   font-weight: 600;
+
   padding: 10px 10px;
   margin-bottom: 10px;
   margin-right: 10px;
   border-radius: 6px;
+
   cursor: pointer;
+
   transition: background-color 0.2s ease;
 
   &:hover {
