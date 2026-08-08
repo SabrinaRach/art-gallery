@@ -7,8 +7,10 @@ const StyledForm = styled.form`
   gap: 12px;
   margin-top: 20px;
   width: 100%;
+  max-width: 500px;
   background-color: #eae5e5;
   border-radius: 8px;
+  box-sizing: border-box;
 `;
 
 const StyledHeading = styled.h3`
@@ -19,20 +21,23 @@ const StyledHeading = styled.h3`
 
 const InputGroup = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-start;
+  align-items: flex-end;
+  padding: 0 10px 10px;
 
   @media (min-width: 400px) {
     flex-direction: row;
-    align-items: flex-end;
+    align-items: flex-start;
   }
 `;
 
 // 2. Style the comment text box
 const StyledTextarea = styled.textarea`
-  width: 80%;
-  max-width: 320px;
+  width: 320px;
+  max-width: calc(100vw - 40px);
+  min-width: 0;
   height: 90px;
   padding: 10px 10px;
   margin-bottom: 10px;
@@ -63,7 +68,7 @@ const StyledTextarea = styled.textarea`
 const StyledButton = styled.button`
   height: 50px;
   width: 80px;
-  padding: 0 20px;
+  min-width: 80px;
   background-color: #5f7a6b;
   color: #ffffff;
   font-weight: 600;
