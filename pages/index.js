@@ -22,12 +22,5 @@ export default function HomePage({ artPieces, toggleFavorite }) {
     return <p>Loading spotlight artwork...</p>;
   }
 
-  return (
-    <Spotlight
-      artPiece={spotlightArt}
-      toggleFavorite={toggleFavorite}
-      width={spotlightArt.dimensions.width}
-      height={spotlightArt.dimensions.height}
-    />
-  );
+  return <Spotlight artPiece={spotlightArt} toggleFavorite={toggleFavorite} />;
 }

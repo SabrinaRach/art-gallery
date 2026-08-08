@@ -6,7 +6,7 @@ The "artPieces" array is passed as a prop from the parent component. */
 export default function ArtPieces({ artPieces, toggleFavorite }) {
   return (
     <div className="gallery-page">
-      <h1>Gallery Page</h1>
+      <h1>ART GALLERY</h1>
       {/* Maps through the artpieceInfo array and creates a preview for each artwork */}
       {/* Displays a preview of the artwork. The artwork data is passed as props*/}
       <Gallery>

@@ -1,16 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Artwork } from "/components/art-piece-preview/styles"; //components/art-piece-preview/styles.js
 /* importing FavoriteButton component from the favorite-button directory. 
 This component is used to allow users to mark an art piece as a favorite. */
 import FavoriteButton from "../favorite-button/favorite-button.js";
 
-export default function Spotlight({
-  artPiece,
-  isFavorite,
-  toggleFavorite,
-  width,
-  height,
-}) {
+export default function Spotlight({ artPiece, isFavorite, toggleFavorite }) {
   /*  naming different frame styles */
   const frameStyles = [
     "baroqueGold",
@@ -38,8 +33,8 @@ export default function Spotlight({
             <Image
               src={imageSource}
               alt={title}
-              width={width}
-              height={height}
+              width={artPiece.dimensions.width}
+              height={artPiece.dimensions.height}
               style={{
                 width: "100%",
                 height: "100%",
@@ -52,6 +47,7 @@ export default function Spotlight({
                 isFavorite={isFavorite}
                 toggleFavorite={toggleFavorite}
               />
+              <Link href={`/art-pieces/${slug}`}>View Details</Link>
             </div>
           </div>
         </Artwork>
