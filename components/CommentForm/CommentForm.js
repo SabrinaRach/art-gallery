@@ -8,11 +8,13 @@ const StyledForm = styled.form`
   margin-top: 20px;
   width: 100%;
   background-color: #eae5e5;
+  border-radius: 8px;
 `;
 
 const StyledHeading = styled.h3`
   font-size: 1.2rem;
   margin-bottom: 4px;
+  padding-left: 10px;
 `;
 
 const InputGroup = styled.div`

@@ -11,7 +11,7 @@ const Heading = styled.h3`
 
 const CommentList = styled.ul`
   list-style: none;
-  padding: 0;
+  padding: 0px 5px 0px 0px; /* padding to the right to avoid overlap with the scrollbar */
   margin: 0;
   display: flex;
   flex-direction: column;

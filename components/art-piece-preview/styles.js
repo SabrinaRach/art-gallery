@@ -10,13 +10,13 @@ export const Artwork = styled.li`
 
   /* Tablet */
   @media (max-width: 900px) {
-    grid-column: span 1;
+    grid-column: span 4;
   }
 
   /* Smartphone */
   @media (max-width: 600px) {
     grid-column: span 1;
-    grid-row: span 15;
+    grid-row: span 15; 
   }
 
   overflow: hidden;
