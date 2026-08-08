@@ -21,10 +21,15 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     if (!data) return;
 
+    /* see if there is already saved data in browser with the name artpieceInfo */
     const savedArtPieces = localStorage.getItem("artpieceInfo");
 
+    /* if there is data reload it in state 
+    use JSON.parse to convert the data from text(string) to JS object*/
     if (savedArtPieces) {
       setArtpieceInfo(JSON.parse(savedArtPieces));
+
+      /* if there is no data take it from API and add*/
     } else {
       const initialData = data.map((item) => ({
         ...item,
@@ -36,7 +41,8 @@ export default function App({ Component, pageProps }) {
     }
   }, [data]);
 
-  // Save whenever state changes
+  // Save in browser whenever state of artpieceInfo changes
+  //JSON.stringify to convert JS array to text
   useEffect(() => {
     if (artpieceInfo.length > 0) {
       localStorage.setItem("artpieceInfo", JSON.stringify(artpieceInfo));
