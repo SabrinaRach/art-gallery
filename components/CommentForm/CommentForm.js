@@ -1,3 +1,86 @@
+import styled from "styled-components";
+
+// 1. Style the form wrapper to layout children properly
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+  width: 100%;
+  background-color: #eae5e5;
+`;
+
+const StyledHeading = styled.h3`
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+`;
+
+const InputGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+
+  @media (min-width: 400px) {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+`;
+
+// 2. Style the comment text box
+const StyledTextarea = styled.textarea`
+  width: 80%;
+  max-width: 320px;
+  height: 90px;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #dcdcdc;
+  color: #333;
+  font-size: 0.95rem;
+  resize: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #5f7a6b; /* Matches your theme */
+    box-shadow: 0 0 0 2px rgba(95, 122, 107, 0.2);
+    background-color: #ffffff;
+  }
+
+  &::placeholder {
+    color: #888;
+  }
+`;
+
+// 3. Style the post button
+const StyledButton = styled.button`
+  height: 50px;
+  width: 80px;
+  padding: 0 20px;
+  background-color: #5f7a6b;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #4a6154;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+`;
+
 export default function CommentForm({ onSubmitComment }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -11,35 +94,17 @@ export default function CommentForm({ onSubmitComment }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Leave a comment</h3>
-      <div>
-        <textarea
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledHeading>Leave a comment</StyledHeading>
+      <InputGroup>
+        <StyledTextarea
           name="comment"
-          rows="3"
           placeholder="Add your thoughts here..."
-          style={{
-            background: "paleblue",
-            color: "purple",
-            width: "250px",
-            height: "100px",
-          }}
           required
           maxLength={100}
-        ></textarea>
-        <span>
-          <button
-            style={{
-              height: "50px",
-              width: "80px",
-              marginBottom: "5%",
-            }}
-            type="submit"
-          >
-            Post
-          </button>
-        </span>
-      </div>
-    </form>
+        />
+        <StyledButton type="submit">Post</StyledButton>
+      </InputGroup>
+    </StyledForm>
   );
 }

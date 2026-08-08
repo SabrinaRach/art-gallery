@@ -40,9 +40,11 @@ overflow-y: auto;
 const StyleBody = styledComponents.body`
 width: 100%;
 height: 100%;
+border-top: 4px solid black;
 /* Dynamically set background color, falling back to a default if undefined */
   background-color: ${(props) => props.$bgColor || "#8A8175"}; 
-  transition: background-color 0.3s ease;`;
+  transition: background-color 0.3s ease;
+  `;
 const StyledArticle = styledComponents.article`
 overflow: hidden;
 display: flex;
@@ -50,7 +52,7 @@ flex-direction: column;
 align-items: center;
     width: 50%;
    height: 70%;
-    margin-left: 30%;
+    margin-left: 25%;
     padding: 20px;
     
     
@@ -58,6 +60,7 @@ align-items: center;
 const StyledImageContainer = styledComponents.div`
   
   width: 100%;
+  height:30vh;
   padding: 10px;
   margin: 0;
   
@@ -66,7 +69,7 @@ const StyledImageContainer = styledComponents.div`
 //Ensures the image covers the container without distortion
 const StyledImage = styledComponents(Image)`
     width: 100%;
-    height: 80vh;
+    height: 50vh;
     align-self: center;
     `;
 const StyledLink = styledComponents(Link)`
@@ -78,8 +81,10 @@ const StyledInfo = styledComponents.div`
     display: flex;
     flex-direction: column;
     align-items: left;
-    padding: 10px;
-   
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 2px solid #3c3535;
     `;
 
 const StyledHeading = styledComponents.h1`
@@ -99,6 +104,27 @@ const StyledSpan = styledComponents.span`
 const StyledParagraph = styledComponents.p`
     font-size: 1rem;
     margin-bottom: 10px;
+`;
+
+const CommentsSectionWrapper = styledComponents.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top:15px;
+  border-top: 1px solid rgba(47, 46, 46, 0.1);
+  max-height:500px;
+  overflow:hidden;
+`;
+
+const FixedFormContainer = styledComponents.div`
+  position: sticky;
+  bottom: 10px;
+  background-color: inherit; /* Matches your article background */
+  padding-bottom: 10px;
+  border-radius:3px;
+  z-index: 5;
+  /* Optional gradient or box-shadow to fade/separate text as it scrolls underneath */
+  box-shadow: 0 -4px 6px -4px rgba(0, 0, 0, 0.05); 
 `;
 
 export default function ArtPieceDetails({
@@ -189,9 +215,14 @@ export default function ArtPieceDetails({
             </StyledSpan>
             <StyledParagraph>Genre: {artPiece.genre}</StyledParagraph>
             <StyledParagraph>Year of Origin: {artPiece.year}</StyledParagraph>
+            {/* Scrollable comments and sticky form container */}
+            <CommentsSectionWrapper>
+              <Comments comments={currentComments} artPiece={artPiece} />
+              <FixedFormContainer>
+                <CommentForm onSubmitComment={handleAddComment} />
+              </FixedFormContainer>
+            </CommentsSectionWrapper>
           </StyledInfo>
-          <Comments comments={currentComments} />
-          <CommentForm onSubmitComment={handleAddComment} />
         </StyledArticle>
       </StyleBody>
     </>
