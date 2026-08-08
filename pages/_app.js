@@ -4,7 +4,13 @@ import Navigation from "@/components/Navigation/Navigation";
 import { useState, useEffect } from "react";
 
 /* ---- FETCH DATA FROM API ---*/
-const fetcher = (url) => fetch(url).then((res) => res.json());
+const fetcher = async (url) => {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch art pieces: ${res.status}`);
+  }
+  return res.json();
+};
 
 export default function App({ Component, pageProps }) {
   /* state has info for all art pieces, including whether they are marked as favorites or not.*/
@@ -22,12 +28,18 @@ export default function App({ Component, pageProps }) {
     if (!data) return;
 
     /* see if there is already saved data in browser with the name artpieceInfo */
-    const savedArtPieces = localStorage.getItem("artpieceInfo");
+    let savedArtPieces = null;
+    try {
+      const raw = localStorage.getItem("artpieceInfo");
+      savedArtPieces = raw ? JSON.parse(raw) : null;
+    } catch (err) {
+      console.error("Invalid saved art pieces", err);
+      localStorage.removeItem("artpieceInfo");
+    }
 
-    /* if there is data reload it in state 
-    use JSON.parse to convert the data from text(string) to JS object*/
+    /* if there is data reload it in state */
     if (savedArtPieces) {
-      setArtpieceInfo(JSON.parse(savedArtPieces));
+      setArtpieceInfo(savedArtPieces);
 
       /* if there is no data take it from API and add*/
     } else {

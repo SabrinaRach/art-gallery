@@ -6,6 +6,20 @@ This component is used to allow users to mark an art piece as a favorite. */
 import FavoriteButton from "../favorite-button/favorite-button.js";
 
 export default function Spotlight({ artPiece, isFavorite, toggleFavorite }) {
+  // If the spotlight data is not ready, render a safe fallback
+  if (!artPiece || !artPiece.slug) {
+    return <p>Featured artwork not available.</p>;
+  }
+
+  const {
+    title = "Untitled",
+    artist = "Unknown artist",
+    imageSource = "/images/fallback.png",
+    slug,
+  } = artPiece;
+
+  const dimensions = artPiece.dimensions || { width: 800, height: 600 };
+
   /*  naming different frame styles */
   const frameStyles = [
     "baroqueGold",
@@ -15,12 +29,9 @@ export default function Spotlight({ artPiece, isFavorite, toggleFavorite }) {
     "louisXVI",
     "ebonyBlack",
   ];
-  const { title, artist, imageSource, slug } = artPiece;
+
   const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
   const frame = frameStyles[hash % frameStyles.length];
-
-  //console.log("I am inside Spotlight.js", artist);
-
   const colSpan = 2 + (hash % 4);
   const rowSpan = 10 + (hash % 12);
 
@@ -33,8 +44,8 @@ export default function Spotlight({ artPiece, isFavorite, toggleFavorite }) {
             <Image
               src={imageSource}
               alt={title}
-              width={artPiece.dimensions.width}
-              height={artPiece.dimensions.height}
+              width={dimensions.width}
+              height={dimensions.height}
               style={{
                 width: "100%",
                 height: "100%",

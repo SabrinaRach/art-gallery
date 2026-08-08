@@ -54,7 +54,24 @@ align-items: center;
    height: 70%;
     margin-left: 25%;
     padding: 20px;
+    min-width: 400px;
+    /* Tablet */
+  @media (max-width: 900px) {
     
+      margin-left: 15%;
+      width: 80%;
+      height: 100%;
+    
+  }
+
+  /* Smartphone */
+  @media (max-width: 600px) {
+    
+      margin-left: 5%;
+      width: 80%;
+      height: 100%;
+    
+  }
     
     `;
 const StyledImageContainer = styledComponents.div`
@@ -132,10 +149,41 @@ export default function ArtPieceDetails({
   toggleFavorite,
   children,
 }) {
+  // State to manage comments for each art piece, stored in localStorage
+  const [artComments, setArtComments] = useState({});
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      const raw = localStorage.getItem("art-comments");
+      const parsed = raw ? JSON.parse(raw) : {};
+      setArtComments(parsed);
+    } catch (err) {
+      console.error("Invalid art comments in storage", err);
+      localStorage.removeItem("art-comments");
+      setArtComments({});
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    try {
+      localStorage.setItem("art-comments", JSON.stringify(artComments));
+    } catch (err) {
+      console.error("Unable to save art comments", err);
+    }
+  }, [artComments]);
+  if (!artPiece || !artPiece.slug) {
+    return <p>Artwork not found.</p>;
+  }
+  //-------------------------------------------------------------------------------------------------------------------
+
   console.log("children", { children });
   // Extract the first color from the array to use as the background, with a fallback
-  const primaryColor =
-    artPiece?.colors?.[artPiece.colors.length - 1] || "#8A8175";
+  const primaryColor = artPiece?.colors?.length
+    ? artPiece.colors[artPiece.colors.length - 1]
+    : "#8A8175";
 
   //-------------------------------------------------------------------------------------------------------------------
   /*  naming different frame styles */
@@ -147,22 +195,13 @@ export default function ArtPieceDetails({
     "louisXVI",
     "ebonyBlack",
   ];
-  const slug = artPiece.slug || ""; // Ensure slug is defined to avoid errors
+  // Ensure slug & deminsions is defined to avoid errors
+  const slug = artPiece?.slug || "";
   const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
   const frame = frameStyles[hash % frameStyles.length];
   const colSpan = 2 + (hash % 4);
   const rowSpan = 10 + (hash % 12);
-  //-------------------------------------------------------------------------------------------------------------------
-  // Retrieve/initialize comments from localStorage or default to an empty object dictionary
-  // { [slug]: [comments] }
-  const [artComments, setArtComments] = useState(() => {
-    const saved = localStorage.getItem("art-comments");
-    return saved ? JSON.parse(saved) : {};
-  });
-
-  useEffect(() => {
-    localStorage.setItem("art-comments", JSON.stringify(artComments));
-  }, [artComments]);
+  const dimensions = artPiece?.dimensions || { width: 800, height: 600 };
 
   function handleAddComment(newCommentText) {
     const timestamp = new Date().toLocaleString(); // Formats date and time
@@ -178,7 +217,9 @@ export default function ArtPieceDetails({
   }
 
   // Get comments specific to this art piece using its slug or ID
-  const currentComments = artComments[artPiece.slug] || []; // || [] handles the case where there are no comments for this art piece yet
+  const currentComments = artPiece?.slug
+    ? artComments[artPiece.slug] || []
+    : []; // || [] handles the case where there are no comments for this art piece yet
   return (
     <>
       <StyleBody $bgColor={primaryColor}>
@@ -190,8 +231,8 @@ export default function ArtPieceDetails({
                 <Image
                   src={artPiece.imageSource}
                   alt={artPiece.title}
-                  width={artPiece.dimensions.width}
-                  height={artPiece.dimensions.height}
+                  width={dimensions.width}
+                  height={dimensions.height}
                   style={{
                     width: "100%",
                     height: "100%",

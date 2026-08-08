@@ -35,16 +35,21 @@ export default createGlobalStyle`
 h1{
   text-align:center;
   }
-  /* RESPONSIVE DESIGN */
+/* Tablet */
+  @media (max-width: 900px) {
+    main {
+      margin-left: 20%;
+      width: 80%;
+      height: 100%;
+    }
+  }
 
-/*  tablet */
-@media (max-width: 900px) {
-  
-}
-
-/*  smartphone */
-@media (max-width: 600px) {
-}
+  /* Smartphone */
+  @media (max-width: 600px) {
+    main {
+      margin-left: 10%;
+      width: 80%;
+      height: 100%;
+    }
+  }
 `;
-
-

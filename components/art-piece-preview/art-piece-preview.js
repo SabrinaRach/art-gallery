@@ -16,6 +16,16 @@ export default function ArtPiecePreview({
   isFavorite,
   toggleFavorite,
 }) {
+  // If the preview props are missing, render a safe fallback
+  if (!slug) {
+    return <p>Artwork preview unavailable.</p>;
+  }
+
+  const safeTitle = title || "Untitled";
+  const safeArtist = artist || "Unknown artist";
+  const safeImage = image || "/images/fallback.png";
+  const safeDimensions = { width: width || 800, height: height || 600 }; //avoids invalid image dimensions
+
   // Add the character codes of all characters in the slug to get a number.
   const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
 
@@ -46,10 +56,10 @@ export default function ArtPiecePreview({
             height: "100%",
             objectFit: "cover",
           }}
-          src={image}
-          alt={title}
-          width={width}
-          height={height}
+          src={safeImage}
+          alt={safeTitle}
+          width={safeDimensions.width}
+          height={safeDimensions.height}
         />
 
         <div className="overlay">
@@ -58,8 +68,8 @@ export default function ArtPiecePreview({
             isFavorite={isFavorite}
             toggleFavorite={toggleFavorite}
           />
-          <h2>{title}</h2>
-          <p>Artist: {artist}</p>
+          <h2>{safeTitle}</h2>
+          <p>Artist: {safeArtist}</p>
 
           <Link href={`/art-pieces/${slug}`}>View Details</Link>
         </div>

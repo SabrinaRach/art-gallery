@@ -16,7 +16,7 @@ export const Artwork = styled.li`
   /* Smartphone */
   @media (max-width: 600px) {
     grid-column: span 1;
-    grid-row: span 15; 
+    grid-row: span 15;
   }
 
   overflow: hidden;
