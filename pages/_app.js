@@ -16,17 +16,32 @@ export default function App({ Component, pageProps }) {
   );
 
   /* if data changes, update the artpieceInfo state with the new data.
-   This ensures that the component always has the latest information about the art pieces. */
+   This ensures that the component always has the latest information about the art pieces. 
+   Load from local Storage or API*/
   useEffect(() => {
-    if (data) {
-      setArtpieceInfo(
-        data.map((item) => ({
-          ...item,
-          isFavorite: false, // Initialize isFavorite property for each art piece
-        }))
-      );
+    if (!data) return;
+
+    const savedArtPieces = localStorage.getItem("artpieceInfo");
+
+    if (savedArtPieces) {
+      setArtpieceInfo(JSON.parse(savedArtPieces));
+    } else {
+      const initialData = data.map((item) => ({
+        ...item,
+        isFavorite: false,
+        comments: [],
+      }));
+
+      setArtpieceInfo(initialData);
     }
   }, [data]);
+
+  // Save whenever state changes
+  useEffect(() => {
+    if (artpieceInfo.length > 0) {
+      localStorage.setItem("artpieceInfo", JSON.stringify(artpieceInfo));
+    }
+  }, [artpieceInfo]);
 
   /* error handling */
   if (error) return <div>Failed to load art pieces</div>;

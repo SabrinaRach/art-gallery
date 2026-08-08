@@ -5,7 +5,9 @@ export default function FavoriteButton({ slug, isFavorite, toggleFavorite }) {
     <FavoriteButtonStyle
       type="button"
       onClick={() => toggleFavorite(slug)}
-      $isFavorite={isFavorite}
+      $isFavorite={
+        isFavorite
+      } /* is used to pass the isFavorite prop to the styled component for conditional styling */
       aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
     >
       <span />
@@ -15,11 +17,18 @@ export default function FavoriteButton({ slug, isFavorite, toggleFavorite }) {
 
 /* Favorite Button styling */
 export const FavoriteButtonStyle = styled.button`
+position: absolute;
+top: 10px;
+right: 50px;
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   cursor: pointer;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  z-index: 10;
   span {
     display: block;
 

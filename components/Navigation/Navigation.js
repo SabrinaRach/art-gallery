@@ -36,7 +36,7 @@ export default function Navigation() {
       </Link>
       <Link href="/art-pieces">
         <Image
-          src="/images/Gallery_icon.png"
+          src="/images/Art_Gallery_icon.png"
           alt="Gallery"
           width={100}
           height={100}
@@ -52,7 +52,7 @@ export default function Navigation() {
       </Link>
       <Link href="/Favorites">
         <Image
-          src=""
+          src="/images/favorite_Button.png"
           alt="Favorites"
           width={100}
           height={100}
