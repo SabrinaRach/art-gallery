@@ -16,9 +16,13 @@ export default function ArtPiecePreview({
   isFavorite,
   toggleFavorite,
 }) {
+  // Add the character codes of all characters in the slug to get a number.
   const hash = [...slug].reduce((sum, char) => sum + char.charCodeAt(0), 0);
 
+  // Calculate a column span between 2 and 5.
   const colSpan = 2 + (hash % 4);
+
+  // Calculate a row span between 10 and 21.
   const rowSpan = 10 + (hash % 12);
 
   /*  naming different frame styles */
