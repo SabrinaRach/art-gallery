@@ -8,6 +8,17 @@ export const Artwork = styled.li`
   grid-column: span ${({ $colSpan }) => $colSpan};
   grid-row: span ${({ $rowSpan }) => $rowSpan};
 
+  /* Tablet */
+  @media (max-width: 900px) {
+    grid-column: span 1;
+  }
+
+  /* Smartphone */
+  @media (max-width: 600px) {
+    grid-column: span 1;
+    grid-row: span 15;
+  }
+
   overflow: hidden;
 
   padding: 18px;
