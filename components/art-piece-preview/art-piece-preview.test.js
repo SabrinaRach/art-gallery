@@ -36,6 +36,7 @@ test("renders title, artist, and image correctly", () => {
       title={testArtPiece.name}
       image={testArtPiece.imageSource}
       artist={testArtPiece.artist}
+      alt={testArtPiece.name}
       slug={testArtPiece.slug}
       width={testArtPiece.dimensions.width}
       height={testArtPiece.dimensions.height}

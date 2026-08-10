@@ -37,7 +37,7 @@ overflow-y: auto;
   padding: 0rem;
   border-right: 2px solid #dcdfe5;
     `;
-const StyleBody = styledComponents.body`
+const StyleBody = styledComponents.div`
 width: 100%;
 height: 100%;
 border-top: 4px solid black;

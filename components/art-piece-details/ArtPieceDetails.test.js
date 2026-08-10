@@ -38,13 +38,15 @@ test("renders art piece details correctly", () => {
   expect(screen.getByText(`Genre: ${testArtPiece.genre}`)).toBeInTheDocument();
 
   // Checks if the year information is rendered correctly
-  expect(screen.getByText(`Year: ${testArtPiece.year}`)).toBeInTheDocument();
+  expect(
+    screen.getByText(`Year of Origin: ${testArtPiece.year}`)
+  ).toBeInTheDocument();
 });
 
 /* 2. testing if it renders comments correctly */
 
 /* mocking a comment*/
-jest.mock("./Comments/Comments", () => {
+jest.mock("../Comments/Comments", () => {
   return function MockComments({ comments }) {
     return <div>{comments.length} comments</div>;
   };
