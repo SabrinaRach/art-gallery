@@ -3,8 +3,8 @@ import ArtPiecePreview from "../art-piece-preview/art-piece-preview"; /* importi
 
 export default function FavoritePieces({ artPieces, toggleFavorite }) {
   const favoritePieces = artPieces.filter((artPiece) => artPiece.isFavorite);
-  if (!Array.isArray(artPieces) || artPieces.length === 0) {
-    return <p>No favorite artwork yet.</p>;
+  if (!Array.isArray(artPieces) || favoritePieces.length === 0) {
+    return <h1>No favorite artwork yet.</h1>;
   }
   return (
     <div className="gallery-page">
